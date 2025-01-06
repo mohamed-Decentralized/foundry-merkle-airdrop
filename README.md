@@ -1,66 +1,19 @@
-## Foundry
+# Merkle Airdrop
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+MerkleAirdrop is a smart contract that facilitates token airdrops using Merkle Trees and EIP-712 signatures. It allows users to claim a portion of an airdrop token by proving their inclusion in a Merkle Tree and providing a valid signature.
 
-Foundry consists of:
+## Features
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- **Merkle Proof**: Users can prove they are eligible for the airdrop using Merkle proofs.
+- **Signature Verification**: Claims are verified with EIP-712 structured signatures to ensure security.
+- **Token Airdrop**: Eligible users receive tokens (ERC-20) after successfully proving their inclusion and validity.
 
-## Documentation
+## How It Works
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+1. **Merkle Tree**: The contract uses a Merkle Tree where each leaf node represents an eligible participant and their airdrop amount.
+2. **Claiming**: Users can claim their airdrop by providing:
+   - Their address
+   - The amount they are eligible to receive
+   - A Merkle proof to prove inclusion in the tree
+   - A valid signature from the contract owner or signer
+3. **Security**: The contract ensures that each user can only claim once and that the signature matches the claim data.
